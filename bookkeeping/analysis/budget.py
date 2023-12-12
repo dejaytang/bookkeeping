@@ -4,7 +4,7 @@ import pygal
 from pygal.style import DefaultStyle
 from IPython.display import SVG, display
 from analysis.analytics import Analysis
-from management.negative_amount_error import NegativeAmountError
+# from management.negative_amount_error import NegativeAmountError
 
 class BudgetAnalysis(Analysis):
     """
@@ -45,8 +45,8 @@ class BudgetAnalysis(Analysis):
             print(f"Your set monthly budget is {round(self.budget)} CAD")
         except ValueError as v:
             print(f"Value Error: {v}")
-        except NegativeAmountError as n:
-            print(f"Negative Amount Error: {n}")
+        # except NegativeAmountError as n:
+        #     print(f"Negative Amount Error: {n}")
    
 
     def overBudgetExpenses(self):
