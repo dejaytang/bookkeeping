@@ -12,7 +12,7 @@ class TestAnalysis(unittest.TestCase):
 
     def setUp(self):
         print("Setting up for a test")
-        self.analysis_instance = Analysis()
+        self.analysis_instance = Analysis(file_path = "bookkeeping/userBook.json")
         self.income = [t for t in self.analysis_instance.transactions if t['type'] == 'income']
         self.expense = [t for t in self.analysis_instance.transactions if t['type'] == 'expense']
 
