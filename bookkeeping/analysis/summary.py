@@ -11,7 +11,7 @@ class SummaryAnalysis(Analysis):
     to perform basic analysis on monthly transactions
     """
 
-    def __init__(self, file_path = "bookkeeping/userBook.json"):
+    def __init__(self, file_path = "userBook.json"):
         super().__init__(file_path)
 
     def checkBalance(self):

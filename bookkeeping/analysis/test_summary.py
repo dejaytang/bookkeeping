@@ -20,7 +20,7 @@ class TestSummaryAnalysis(unittest.TestCase):
 
     def setUp(self):
         print("Setting up for a test")
-        self.analysis_instance = SummaryAnalysis()
+        self.analysis_instance = SummaryAnalysis(file_path = "bookkeeping/userBook.json")
 
     def tearDown(self):
         self.analysis_instance = None

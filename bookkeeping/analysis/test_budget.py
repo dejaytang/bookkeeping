@@ -14,7 +14,7 @@ class TestBudgetAnalysis(unittest.TestCase):
 
     def setUp(self):
         print("Setting up for a test")
-        self.analysis_instance = BudgetAnalysis()
+        self.analysis_instance = BudgetAnalysis(file_path = "bookkeeping/userBook.json")
 
     def tearDown(self):
         self.analysis_instance = None
