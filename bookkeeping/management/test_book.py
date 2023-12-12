@@ -1,7 +1,7 @@
 import unittest
 import os
-from bookkeeping.management.transaction import Income, Expense
-from bookkeeping.management.book import Book
+from management.transaction import Income, Expense
+from management.book import Book
 import sys
 from io import StringIO
 

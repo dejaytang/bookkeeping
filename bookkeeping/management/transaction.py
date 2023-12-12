@@ -1,6 +1,6 @@
 from datetime import datetime
 from datetime import date
-from bookkeeping.management.negative_amount_error import NegativeAmountError
+from management.negative_amount_error import NegativeAmountError
 
 class Transaction:
     """

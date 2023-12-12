@@ -1,6 +1,6 @@
 import json
-from bookkeeping.management.transaction import Income
-from bookkeeping.management.transaction import Expense
+from management.transaction import Income
+from management.transaction import Expense
 
 class Book:
     """
