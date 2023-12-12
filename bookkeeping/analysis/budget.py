@@ -4,7 +4,7 @@ import pygal
 from pygal.style import DefaultStyle
 from IPython.display import SVG, display
 from analysis.analytics import Analysis
-
+from management.negative_amount_error import NegativeAmountError
 
 class BudgetAnalysis(Analysis):
     """
@@ -12,7 +12,7 @@ class BudgetAnalysis(Analysis):
     to perform basic analysis that is related to budget
     """
 
-    def __init__(self, file_path = "userBook.json"):
+    def __init__(self, file_path = "bookkeeping/userBook.json"):
         super().__init__(file_path)
         self.budget = 0  # Initialize budget as 0
 
@@ -29,19 +29,24 @@ class BudgetAnalysis(Analysis):
         Raises:
             ValueError: invalid argument input
         """
-        type = int(type)
-        if type == 1:
-            self.budget = float(amount)
-        elif type == 2:
-            if not isinstance(amount, (int,float)) or amount<0 or amount>100:
-                raise ValueError("Please enter a percentage number between 0 and 100")
-            percentage = float(amount)/100
-            average_income = sum(t['amount'] for t in self.transactions if t['type']
-                                    == 'income') / len(set(t['date'][:7] for t in self.transactions))
-            self.budget = percentage * average_income
-        else:
-            raise ValueError("Please use pre-defined type code")
-        print(f"Your set monthly budget is {round(self.budget)} CAD")
+        try:
+            type = int(type)
+            if type == 1:
+                self.budget = float(amount)
+            elif type == 2:
+                # if amount < 0:
+                #     raise NegativeAmountError
+                percentage = float(amount)/100
+                average_income = sum(t['amount'] for t in self.transactions if t['type']
+                                        == 'income') / len(set(t['date'][:7] for t in self.transactions))
+                self.budget = percentage * average_income
+            else:
+                raise ValueError("Please use pre-defined type code")
+            print(f"Your set monthly budget is {round(self.budget)} CAD")
+        except ValueError as v:
+            print(f"Value Error: {v}")
+        except NegativeAmountError as n:
+            print(f"Negative Amount Error: {n}")
    
 
     def overBudgetExpenses(self):
