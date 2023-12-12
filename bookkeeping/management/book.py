@@ -52,7 +52,7 @@ class Book:
                             print(index, item)
                             found = True
                         if not found:
-                            print(f"{keyword} not found in the {t_type} category.")
+                            print(f"{keyword} not found in the {t_type} transaction records.")
                             return False
             else:
                 print(f"{t_type} category not found in the book.")
