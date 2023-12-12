@@ -34,8 +34,8 @@ class BudgetAnalysis(Analysis):
             if type == 1:
                 self.budget = float(amount)
             elif type == 2:
-                # if amount < 0:
-                #     raise NegativeAmountError
+                if amount < 0:
+                    raise NegativeAmountError
                 percentage = float(amount)/100
                 average_income = sum(t['amount'] for t in self.transactions if t['type']
                                         == 'income') / len(set(t['date'][:7] for t in self.transactions))

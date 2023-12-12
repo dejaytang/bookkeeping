@@ -65,24 +65,27 @@ class SummaryAnalysis(Analysis):
 
         # Plot line chart or bar chart
         chart = None
-        graph_type = int(graph_type)
-        if graph_type == 1:  # line chart
-            chart = pygal.Line(print_values=True,
-                                style=DefaultStyle(value_font_size=10))
-        elif graph_type == 2:  # bar chart
-            chart = pygal.Bar(print_values=True, print_values_position='top',
-                                style=DefaultStyle(value_font_size=10))
-        else:
-            raise ValueError(
-                "Please use pre-defined type code for graph_type")
-        chart.title = 'Monthly trend of expenses, income and balance'
-        chart.x_title = 'month'
-        chart.y_title = 'amount'
-        chart.x_labels = map(str, sorted_months)
-        chart.add('Expenses', expense_values)
-        chart.add('Income', income_values)
-        chart.add('Balance', balance_values)
-        display(SVG(chart.render(disable_xml_declaration=True)))
+        try: 
+            graph_type = int(graph_type)
+            if graph_type == 1:  # line chart
+                chart = pygal.Line(print_values=True,
+                                    style=DefaultStyle(value_font_size=10))
+            elif graph_type == 2:  # bar chart
+                chart = pygal.Bar(print_values=True, print_values_position='top',
+                                    style=DefaultStyle(value_font_size=10))
+            else:
+                raise ValueError(
+                    "Please use pre-defined type code for graph_type")
+            chart.title = 'Monthly trend of expenses, income and balance'
+            chart.x_title = 'month'
+            chart.y_title = 'amount'
+            chart.x_labels = map(str, sorted_months)
+            chart.add('Expenses', expense_values)
+            chart.add('Income', income_values)
+            chart.add('Balance', balance_values)
+            display(SVG(chart.render(disable_xml_declaration=True)))
+        except ValueError as v:
+            print(f"Value Error: {v}")
 
 
     def displayByLabel(self, transaction_type, graph_type):
@@ -122,34 +125,37 @@ class SummaryAnalysis(Analysis):
 
         # Plot a type of pie chart of income or expenses
         pie_chart = None
-        graph_type = int(graph_type)
-        if graph_type == 1:  # Pie
-            pie_chart = pygal.Pie(print_values=True, style=DefaultStyle(
-                value_font_size=10), value_formatter=lambda x:  '%.2f%%' % float(x))
-        elif graph_type == 2:  # Donut
-            pie_chart = pygal.Pie(inner_radius=.4, print_values=True, style=DefaultStyle(
-                value_font_size=10), value_formatter=lambda x:  '%.2f%%' % float(x))
-        elif graph_type == 3:  # Ring
-            pie_chart = pygal.Pie(inner_radius=.75, print_values=True, style=DefaultStyle(
-                value_font_size=10), value_formatter=lambda x:  '%.2f%%' % float(x))
-        elif graph_type == 4:  # Half-pie
-            pie_chart = pygal.Pie(half_pie=True, print_values=True, style=DefaultStyle(
-                value_font_size=10), value_formatter=lambda x:  '%.2f%%' % float(x))
-        else:
-            raise ValueError(
-                "Please use pre-defined type code for graph_type")
+        try:
+            graph_type = int(graph_type)
+            if graph_type == 1:  # Pie
+                pie_chart = pygal.Pie(print_values=True, style=DefaultStyle(
+                    value_font_size=10), value_formatter=lambda x:  '%.2f%%' % float(x))
+            elif graph_type == 2:  # Donut
+                pie_chart = pygal.Pie(inner_radius=.4, print_values=True, style=DefaultStyle(
+                    value_font_size=10), value_formatter=lambda x:  '%.2f%%' % float(x))
+            elif graph_type == 3:  # Ring
+                pie_chart = pygal.Pie(inner_radius=.75, print_values=True, style=DefaultStyle(
+                    value_font_size=10), value_formatter=lambda x:  '%.2f%%' % float(x))
+            elif graph_type == 4:  # Half-pie
+                pie_chart = pygal.Pie(half_pie=True, print_values=True, style=DefaultStyle(
+                    value_font_size=10), value_formatter=lambda x:  '%.2f%%' % float(x))
+            else:
+                raise ValueError(
+                    "Please use pre-defined type code for graph_type")
 
-        transaction_type = str(transaction_type)
-        if transaction_type == "income":
-            pie_chart.title = 'Constitution of income'
-            for key, value in percentage_composition['income'].items():
-                pie_chart.add(key, value)
-            display(SVG(pie_chart.render(disable_xml_declaration=True)))
-        elif transaction_type == "expense":
-            pie_chart.title = 'Constitution of expenses'
-            for key, value in percentage_composition['expense'].items():
-                pie_chart.add(key, value)
-            display(SVG(pie_chart.render(disable_xml_declaration=True)))
-        else:
-            raise ValueError(
-                "Please use pre-defined type code for transaction_type")
+            transaction_type = str(transaction_type)
+            if transaction_type == "income":
+                pie_chart.title = 'Constitution of income'
+                for key, value in percentage_composition['income'].items():
+                    pie_chart.add(key, value)
+                display(SVG(pie_chart.render(disable_xml_declaration=True)))
+            elif transaction_type == "expense":
+                pie_chart.title = 'Constitution of expenses'
+                for key, value in percentage_composition['expense'].items():
+                    pie_chart.add(key, value)
+                display(SVG(pie_chart.render(disable_xml_declaration=True)))
+            else:
+                raise ValueError(
+                    "Please use pre-defined type code for transaction_type")
+        except ValueError as v:
+            print(f"Value Error: {v}")
