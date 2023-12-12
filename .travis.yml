@@ -3,6 +3,7 @@ python:
   - "3.9"
 install:
   - "pip install pygal"
+  - "pip install IPython"
 # command to run tests
 script:
   - python bookkeeping/testsuite_bk.py
