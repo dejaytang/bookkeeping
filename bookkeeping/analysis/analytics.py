@@ -6,7 +6,7 @@ class Analysis:
     from a JSON file and stores in an attribute
     """
 
-    def __init__(self,file_path = "../userBook.json"):
+    def __init__(self,file_path = "userBook.json"):
         self.transactions = self.loadBookData(file_path)
 
     def loadBookData(self, file_path):

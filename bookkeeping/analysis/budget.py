@@ -12,7 +12,7 @@ class BudgetAnalysis(Analysis):
     to perform basic analysis that is related to budget
     """
 
-    def __init__(self, file_path = "bookkeeping/userBook.json"):
+    def __init__(self, file_path = "userBook.json"):
         super().__init__(file_path)
         self.budget = 0  # Initialize budget as 0
 
