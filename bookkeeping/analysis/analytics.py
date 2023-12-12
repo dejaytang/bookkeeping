@@ -17,7 +17,7 @@ class Analysis:
                 data = json.load(file)
         except FileNotFoundError:
             # Handle file not found error
-            print("Error: File '{}' not found.".format(file_path))
+            print(f"Error: File '{file_path}' not found.")
             return []
 
 
