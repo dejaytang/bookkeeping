@@ -1,5 +1,6 @@
 from datetime import datetime
 from datetime import date
+from management.negative_amount_error import NegativeAmountError
 
 class Transaction:
     """
@@ -9,9 +10,14 @@ class Transaction:
 
     def __init__(self, amount, desc, label=None):
         try:
-            self.amount = float(amount)             
+            self.amount = float(amount)
+            if self.amount < 0:
+                raise NegativeAmountError              
         except ValueError:
             print("Amount must be a number")
+        except NegativeAmountError as e:
+            print(f"Error: {e}")
+                   
 
         self.desc = desc
         self.date = date.today()

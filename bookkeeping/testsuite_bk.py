@@ -1,13 +1,17 @@
 import unittest
+
 from analysis.test_analytics import TestAnalysis 
 from analysis.test_summary import TestSummaryAnalysis
 from analysis.test_budget import TestBudgetAnalysis
+
 from management.test_transaction import TestTransaction
 from management.test_book import TestBook
 
 def bookkeeping_suite():
+    
     suite = unittest.TestSuite()
-    result = unittest.TestResult() 
+    result = unittest.TestResult()
+    
     suite.addTest(TestAnalysis('test_loadBookData_expense')) 
     suite.addTest(TestAnalysis('test_loadBookData_income')) 
     suite.addTest(TestAnalysis('test_loadBookData_file_not_found'))
