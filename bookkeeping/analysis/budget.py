@@ -4,7 +4,7 @@ import pygal
 from pygal.style import DefaultStyle
 from IPython.display import SVG, display
 from analysis.analytics import Analysis
-# from management.negative_amount_error import NegativeAmountError
+from management.negative_amount_error import NegativeAmountError
 
 class BudgetAnalysis(Analysis):
     """
@@ -34,8 +34,8 @@ class BudgetAnalysis(Analysis):
             if type == 1:
                 self.budget = float(amount)
             elif type == 2:
-                # if amount < 0:
-                #     raise NegativeAmountError
+                if amount < 0:
+                    raise NegativeAmountError
                 percentage = float(amount)/100
                 average_income = sum(t['amount'] for t in self.transactions if t['type']
                                         == 'income') / len(set(t['date'][:7] for t in self.transactions))
@@ -45,8 +45,8 @@ class BudgetAnalysis(Analysis):
             print(f"Your set monthly budget is {round(self.budget)} CAD")
         except ValueError as v:
             print(f"Value Error: {v}")
-        # except NegativeAmountError as n:
-        #     print(f"Negative Amount Error: {n}")
+        except NegativeAmountError as n:
+            print(f"Negative Amount Error: {n}")
    
 
     def overBudgetExpenses(self):
