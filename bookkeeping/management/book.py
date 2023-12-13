@@ -39,21 +39,22 @@ class Book:
             print(f"Error adding transaction: {e}")
 
     def searchTran(self, t_type, keyword):
+        found = False
         try:
             if not isinstance(t_type, str) or (t_type.lower() not in ["income", "expense"]):
                 raise ValueError("Transaction type must be a string ('income' or 'expense').")
             if not isinstance(keyword, str):
                 raise ValueError("Keyword must be a string.")
             if t_type in self.book:
-                found = False
+                
                 for index, item in enumerate(self.book[t_type]):
                         if keyword in item["desc"]:
                             index += 1
                             print(index, item)
                             found = True
-                        if not found:
-                            print(f"{keyword} not found in the {t_type} transaction records.")
-                            return False
+                if not found:
+                        print(f"{keyword} not found in the {t_type} transaction records.")
+                        return False
             else:
                 print(f"{t_type} category not found in the book.")
                 return False
