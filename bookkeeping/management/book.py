@@ -70,7 +70,7 @@ class Book:
                 raise ValueError("Transaction type must be a string ('income' or 'expense').")
             index = int(index) - 1
             if not (0 <= index < len(self.book[t_type])):
-                raise ValueError("Either index is not an integer or index is out of bounds.")
+                raise ValueError("index is out of bounds.")
             if t_type in self.book:
                 print(f"Removing {self.book[t_type][index]}")
                 del self.book[t_type][index]
