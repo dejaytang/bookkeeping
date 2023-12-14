@@ -68,9 +68,9 @@ class Book:
         try:
             if not isinstance(t_type, str) or t_type.lower() not in ["income", "expense"]:
                 raise ValueError("Transaction type must be a string ('income' or 'expense').")
-            if not isinstance(index, int) or not (0 <= index - 1 < len(self.book[t_type])):
+            index = int(index) - 1
+            if not (0 <= index < len(self.book[t_type])):
                 raise ValueError("Either index is not an integer or index is out of bounds.")
-            index = index - 1
             if t_type in self.book:
                 print(f"Removing {self.book[t_type][index]}")
                 del self.book[t_type][index]
