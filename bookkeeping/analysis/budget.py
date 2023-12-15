@@ -46,7 +46,7 @@ class BudgetAnalysis(Analysis):
         except ValueError as v:
             print(f"Value Error: {v}")
         except ZeroDivisionError as Z:
-            print(f"There is no income in this month")
+            print(f"There is no income")
         except NegativeAmountError as n:
             print(f"Negative Amount Error: {n}")
    
