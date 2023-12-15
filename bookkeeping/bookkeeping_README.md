@@ -45,20 +45,20 @@ A subclass of Transaction class that represents Expense object
 #### Book Class
 This class represents the Book object that keeps records of all transactions of a single user.
 
-**__init__()**: Initializes a new Book object. Loads existing data from ```userBook.json``` if available, otherwise creates an empty book.
+**__init__(filePath = "userbook.json")**: Initializes a new Book object with a file path where a JSON file is to be saved. filePath is set to be "userbook.json" in default if not specified. Loads existing data from filePath if available, otherwise creates an empty book with the specified JSON name in the file path.
 
-**saveData()**: Saves the current state of the book to ```userBook.json```.
+**saveData(filePath = "userbook.json")**: Saves the current state of the book to the JSON file in the filePath.
 
-**loadData()**: Loads data from ```userBook.json``` into the book. If the file is not found or is not valid JSON, initializes the book with empty lists for 'income' and 'expense'.
+**loadData(filePath = "userbook.json")**: Loads data from the JSON file in the filePath into the book. If the file is not found or is not valid JSON, initializes the book with empty lists for 'income' and 'expense'.
 
-**addTran(transanction)**: Adds a transaction to the book and saves the updated data by taking an instance of the Income or Expense class.
+**addTran(transanction, filePath = "userbook.json")**: Adds a transaction to the book and saves the updated data into the JSON file in the filePath by taking an instance of the Income or Expense class.
 
 **searchTran(t_type, keyword)**: Searches for transactions of a given type of transaction containing a keyword in their description and prints the results. 
 Parameters: t_type: string, either 'income' or 'expense'. keyword: string to search for in transaction descriptions. 
 
-**removeTran(t_type, index)**: Removes a transaction from the book based on its type and index, then saves the updated data. Parameters: t_type: String, either 'income' or 'expense'. index: Index of the transaction to be removed.
+**removeTran(t_type, index, filePath = "userbook.json")**: Removes a transaction from the book based on its type and index, then saves the updated data into the JSON file in the filePath. Parameters: t_type: String, either 'income' or 'expense'. index: Index of the transaction to be removed.
 
-**clearAll()**: Clears all transactions in both 'income' and 'expense' categories and saves the updated data.
+**clearAll(filePath = "userbook.json")**: Clears all transactions in both 'income' and 'expense' categories and saves the updated data into the JSON file in the filePath.
 
 **displayBook()**: Displays all transactions in the book.
 
