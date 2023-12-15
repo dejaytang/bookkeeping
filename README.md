@@ -8,4 +8,4 @@ Please note that the coverage percentage for analysis/budget.py and analysis/sum
 ![coverage report](coverage_report.jpeg) 
 
 ## Link to PyPi for Package Publish
-https://pypi.org/project/bookkeeping/0.0.1/
+https://pypi.org/project/bookkeeping/0.0.7/
