@@ -80,19 +80,19 @@ It inherits from a base class `Analysis`. This class provides methods to check t
 
 **checkBalance()**: Calculates the overall balance for the current month and prints the result.
 
-**displayTrend(graph_type)**: Plots a line chart or bar chart to represent the monthly trend of income, expenses, and balance.
+**displayTrend(graph_type=2)**: Plots a line chart or bar chart to represent the monthly trend of income, expenses, and balance.
 
-- `graph_type`: 
+- `graph_type`: (default `2`)
     - `1`: a line chart 
     - `2`: a bar chart
 
-**displayByLabel(transaction_type, graph_type)**: Plots a pie chart, donut chart, ring chart, or half-pie chart to represent the constitution of income or expenses by label.
+**displayByLabel(transaction_type="expense", graph_type=1)**: Plots a pie chart, donut chart, ring chart, or half-pie chart to represent the constitution of income or expenses by label.
 
-- `transaction_type`:
+- `transaction_type`: (default `expense`)
     - `income`
     - `expense`
     
-- `graph_type`:
+- `graph_type`: (default `1`)
     - `1`: a pie chart
     - `2`: a donut chart
     - `3`: a ring chart
@@ -105,13 +105,13 @@ It inherits from a base class `Analysis`. This class provides methods to set a m
 
 **__init__()**: Create an instance of the BudgetAnalysis class. This automatically initializes the budget as 0.
 
-**setBudget(type, amount)**: Set a monthly budget based on either a specified amount or a percentage of average income.
+**setBudget(type=1, amount=0)**: Set a monthly budget based on either a specified amount or a percentage of average income.
 
-- `type`:
+- `type`: (default `1`)
     - `1` : setting the budget with a specific amount
     - `2` : setting the budget with a percentage of average income
-- `amount`:
-    - For `type=1`, it is the amount of the monthly budget (>0)
+- `amount`: (default `0`)
+    - For `type=1`, it is the amount of the monthly budget
     - For `type=2`, it is the percentage of average income (0-100)
 
 **overBudgetExpenses()**: Print the amount of expenses exceeding the set budget for the current month and display expenses that occur after the budget is exceeded.
