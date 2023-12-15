@@ -16,16 +16,16 @@ class BudgetAnalysis(Analysis):
         super().__init__(file_path)
         self.budget = 0  # Initialize budget as 0
 
-    def setBudget(self, type=1, amount=0):
+    def setBudget(self, amount=0, type=1):
         """
         Set a monthly budget
 
         Args:
+            amount (float): an amount(>0) or a percentage(0-100), default 0
             type (int): an integer indicating whether the user would like to 
                     set the budget with the amount number or percentage of income
-                    1 for an amount of monthly budget(default), 2 for a percentage of average income
-            amount (float): an amount(>0) or a percentage(0-100), default 0
-
+                    1 for an amount of monthly budget(default), 
+                    2 for a percentage of average income
         Raises:
             ValueError: invalid argument input
         """

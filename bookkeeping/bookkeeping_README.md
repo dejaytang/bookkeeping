@@ -105,14 +105,15 @@ It inherits from a base class `Analysis`. This class provides methods to set a m
 
 **__init__()**: Create an instance of the BudgetAnalysis class. This automatically initializes the budget as 0.
 
-**setBudget(type=1, amount=0)**: Set a monthly budget based on either a specified amount or a percentage of average income.
+**setBudget(amount=0, type=1)**: Set a monthly budget based on either a specified amount or a percentage of average income.
 
-- `type`: (default `1`)
-    - `1` : setting the budget with a specific amount
-    - `2` : setting the budget with a percentage of average income
 - `amount`: (default `0`)
     - For `type=1`, it is the amount of the monthly budget
     - For `type=2`, it is the percentage of average income (0-100)
+- `type`: (default `1`)
+    - `1` : setting the budget with a specific amount
+    - `2` : setting the budget with a percentage of average income
+
 
 **overBudgetExpenses()**: Print the amount of expenses exceeding the set budget for the current month and display expenses that occur after the budget is exceeded.
 

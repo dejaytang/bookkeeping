@@ -23,13 +23,13 @@ class TestBudgetAnalysis(unittest.TestCase):
     def test_setBudget(self):
         # Test setting the budget with a number (type = 1)
         with patch("builtins.print") as mock_print:
-            self.analysis_instance.setBudget(1, 500)
+            self.analysis_instance.setBudget(500)
             self.assertEqual(self.analysis_instance.budget, 500)
             mock_print.assert_called_once_with("Your set monthly budget is 500 CAD")
 
         # Test setting the budget with a percentage (type = 2) and original data
         with patch("builtins.print") as mock_print:
-            self.analysis_instance.setBudget(2, 20)
+            self.analysis_instance.setBudget(20, 2)
             self.assertAlmostEqual(self.analysis_instance.budget, 157, places = 0)
             mock_print.assert_called_once_with("Your set monthly budget is 157 CAD")        
 
