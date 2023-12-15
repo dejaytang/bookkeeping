@@ -25,13 +25,13 @@ class SummaryAnalysis(Analysis):
             t['amount'] if t['type'] == 'income' else -t['amount'] for t in current_month_transactions)
         print(f"Overall Balance for {current_month}: {current_month_balance}")
 
-    def displayTrend(self, graph_type):
+    def displayTrend(self, graph_type=2):
         """ 
         Plot a line chart or bar chart to represent the monthly 
         trend of income, expenses and balance
 
         Args:
-            graph_type (int): 1 for line chart, 2 for bar chart
+            graph_type (int): 1 for line chart, 2 for bar chart(default)
 
         Raises:
             ValueError: invalid argument input for graph_type
@@ -88,14 +88,14 @@ class SummaryAnalysis(Analysis):
             print(f"Value Error: {v}")
 
 
-    def displayByLabel(self, transaction_type, graph_type):
+    def displayByLabel(self, transaction_type="expense", graph_type=1):
         """ 
         Plot one type of pie chart to represent the constitution
         of income or expenses
 
         Args:
-            transaction_type (str): "income", "expense"
-            graph_type (int): 1 for pie chart, 2 for donut chart, 
+            transaction_type (str): "income", "expense"(default)
+            graph_type (int): 1 for pie chart(default), 2 for donut chart, 
                             3 for ring chart, 4 for half-pie chart
 
         Raises:

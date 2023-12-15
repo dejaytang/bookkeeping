@@ -16,15 +16,15 @@ class BudgetAnalysis(Analysis):
         super().__init__(file_path)
         self.budget = 0  # Initialize budget as 0
 
-    def setBudget(self, type, amount):
+    def setBudget(self, type=1, amount=0):
         """
         Set a monthly budget
 
         Args:
             type (int): an integer indicating whether the user would like to 
                     set the budget with the amount number or percentage of income
-                    1 for an amount of monthly budget, 2 for a percentage of average income
-            amount (float): an amount(>0) or a percentage(0-100)
+                    1 for an amount of monthly budget(default), 2 for a percentage of average income
+            amount (float): an amount(>0) or a percentage(0-100), default 0
 
         Raises:
             ValueError: invalid argument input
@@ -45,6 +45,8 @@ class BudgetAnalysis(Analysis):
             print(f"Your set monthly budget is {round(self.budget)} CAD")
         except ValueError as v:
             print(f"Value Error: {v}")
+        except ZeroDivisionError as Z:
+            print(f"There is no income in this month")
         except NegativeAmountError as n:
             print(f"Negative Amount Error: {n}")
    
@@ -58,19 +60,22 @@ class BudgetAnalysis(Analysis):
         current_month = datetime.now().strftime('%Y-%m')
         current_month_expense = sum(
             t['amount'] for t in self.transactions if t['date'][:7] == current_month and t['type'] == 'expense')
-        if self.budget != 0:
-            over_budget = self.budget-current_month_expense
-            if over_budget >= 0:
-                print(
-                    f"Expenses in the current month have not exceed the budget, {round(over_budget)} CAD remaining")
+        try:
+            if self.budget != 0:
+                over_budget = self.budget-current_month_expense
+                if over_budget >= 0:
+                    print(
+                        f"Expenses in the current month have not exceed the budget, {round(over_budget)} CAD remaining")
+                else:
+                    print(
+                        f"Expenses in the current month have exceeded the budget by {-round(over_budget)} CAD")
             else:
-                print(
-                    f"Expenses in the current month have exceeded the budget by {-round(over_budget)} CAD")
-        else:
-            raise ValueError("Budget has not been set yet")
-
-        post_budget_transactions = self.transactionsAfterBudgetExceeded()
-        self.displayTransactions(post_budget_transactions)
+                raise ValueError("Budget has not been set yet")
+        except ValueError as ve:
+            print(ve)
+        finally:
+            post_budget_transactions = self.transactionsAfterBudgetExceeded()
+            self.displayTransactions(post_budget_transactions)
 
     def transactionsAfterBudgetExceeded(self):
         """
